@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import "./createTodo.css";
-import axios from "axios";
+import "./createTodo.scss";
 import { useParams } from "react-router-dom";
 
 function withParams(Component) {
@@ -26,18 +25,31 @@ class editTodo extends Component {
     componentDidMount() {
         // let self = this;
         // console.log(this.props.match.params.id);
+
         let { id } = this.props.params;
         console.log(id);
-        axios.get('http://localhost:5001/todo/' + id)
+
+        fetch('http://localhost:5001/todos/' + id)
+            .then(r => r.json())
             .then(response => {
                 this.setState({
-                    title: response.data.title,
-                    description: response.data.description,
+                    title: response.title,
+                    description: response.description,
                 })
-            })
-            .catch(function (error) {
+            }).catch(function (error) {
                 console.log(error);
             })
+
+        // axios.get('http://localhost:5001/todos/' + id)
+        //     .then(response => {
+        //         this.setState({
+        //             title: response.data.title,
+        //             description: response.data.description,
+        //         })
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     })
 
 
     }
@@ -62,13 +74,22 @@ class editTodo extends Component {
             description: this.state.description,
         };
 
-        console.log(todo);
-
         let { id } = this.props.params;
 
-        axios
-            .put("http://localhost:5001/todo/" + id, todo)
-            .then((res) => console.log(res.data));
+        // Using Fetch Put to update
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(todo)
+        };
+
+        fetch("http://localhost:5001/todos/" + id, requestOptions)
+            .then(response => response.json())
+            .then(res => console.log(res))
+
+        // axios
+        // .put("http://localhost:5001/todos/" + id, todo)
+        // .then((res) => console.log(res.data));
 
         window.location = "/";
     }

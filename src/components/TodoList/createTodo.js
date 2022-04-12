@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./createTodo.css";
-import axios from "axios";
+
+import './createTodo.scss';
 
 export default class createTodo extends Component {
   constructor(props) {
@@ -36,11 +36,19 @@ export default class createTodo extends Component {
       description: this.state.description,
     };
 
-    console.log(todo);
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(todo)
+    };
 
-    axios
-      .post("http://localhost:5001/todo/", todo)
-      .then((res) => console.log(res.data));
+    fetch('http://localhost:5001/todos/', requestOptions)
+      .then(response => response.json())
+      .then(data => console.log(data));
+
+    // axios
+    //   .post("http://localhost:5001/todos/", todo)
+    //   .then((res) => console.log(res.data));
 
     window.location = "/";
   }

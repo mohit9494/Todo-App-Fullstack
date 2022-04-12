@@ -3,11 +3,11 @@ import * as todoController from '../controllers/todo-controller.js';
 
 const router = express.Router();
 
-router.route('/todo')
+router.route('/todos')
     .post(todoController.post)
     .get(todoController.index);
 
-router.route('/todo/:id')
+router.route('/todos/:id')
     .get(todoController.get)
     .delete(todoController.remove)
     .put(todoController.update);
