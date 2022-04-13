@@ -1,6 +1,8 @@
 import express from 'express';
 import * as todoController from '../controllers/todo-controller.js';
 
+// Defining the Routes for CRUD ops
+
 const router = express.Router();
 
 router.route('/todos')

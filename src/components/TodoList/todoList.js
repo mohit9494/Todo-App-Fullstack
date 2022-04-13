@@ -3,6 +3,7 @@ import './todoList.scss';
 import { Link } from 'react-router-dom';
 import "./Modal.scss";
 
+// This is the main todo Object used to View the task details in Modal Form
 
 const Todo = props => {
 

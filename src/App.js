@@ -8,6 +8,8 @@ import TodoList from "./components/TodoList/todoList.js";
 import CreateTodo from "./components/TodoList/createTodo.js";
 import EditTodo from "./components/TodoList/editTodo";
 
+// Main React Page
+
 export default class App extends Component {
   render() {
     return (

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import './createTodo.scss';
 
+// This class is used to Create/ Add Task in the app
+
 export default class createTodo extends Component {
   constructor(props) {
     super(props);

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./createTodo.scss";
 import { useParams } from "react-router-dom";
 
+// This class is used to Edit the todo app
+
 function withParams(Component) {
     return props => <Component {...props} params={useParams()} />;
 }
